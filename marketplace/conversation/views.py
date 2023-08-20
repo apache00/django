@@ -9,7 +9,7 @@ from item.models import Item
 from .forms import ConversationMessageForm
 from .models import Conversation
 
-@login_required
+@login_required(login_url='/login/')
 def new_conversation(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
 
@@ -43,7 +43,7 @@ def new_conversation(request, item_pk):
         'form': form
     })
 
-@login_required
+@login_required(login_url='/login/')
 def inbox(request):
     conversations = Conversation.objects.filter(members__in=[request.user.id])
 
@@ -51,7 +51,7 @@ def inbox(request):
         'conversations': conversations
     })
 
-@login_required
+@login_required(login_url='/login/')
 def detail(request, pk):
     conversation = Conversation.objects.filter(members__in=[request.user.id]).get(pk=pk)
 

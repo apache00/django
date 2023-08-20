@@ -34,7 +34,7 @@ def detail(request, pk):
     })
 
 
-@login_required
+@login_required(login_url='/login/')
 def new(request):
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
@@ -53,7 +53,7 @@ def new(request):
         'title': 'New item',
     })
 
-@login_required
+@login_required(login_url='/login/')
 def edit(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
 

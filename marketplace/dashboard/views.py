@@ -4,7 +4,7 @@ from item.models import Item
 
 # Create your views here.
 
-@login_required
+@login_required(login_url='/login/')
 def index(request):
     items = Item.objects.filter(created_by=request.user)
 
